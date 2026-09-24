@@ -28,9 +28,31 @@ Instances stay in the PB24 format, xz-compressed (a few files are uncompressed `
 
 ## instance-list
 
-`instance-list/` holds one CSV per category and integer-size class. The file name is `{category}-{class}.csv`. Columns are `path` and `intsize`. `path` is relative to `benchmarks/`. Combinations with no instances are still present, as a header-only file.
+`instance-list/` is split by competition year. `all/` is the full deduplicated set. `pb06/` through `pb16/`, `pb24/`, `pb25/`, and `pb26/` are the instances that came from that edition. PB26 is included because `normalized-PB26.tar` is published on the PB26 page. `extra-pb12/` is the separate `normalized-extraPB12.tar` archive, not an edition of its own.
+
+Each directory contains `{directory}-{category}-{class}.csv` files, for example `pb24/pb24-DEC-LIN-bigint.csv`. Columns are `path` and `intsize`. `path` is relative to `benchmarks/`. A file is written only when that combination has at least one instance.
 
 `intsize` is the value in the first comment line: the number of bits needed to represent, for any constraint, the sum of the absolute values of the integers in that constraint (the objective is included). The competition expects solvers to use at least 64-bit integers, so `intsize <= 64` is `normalint` and `intsize > 64` is `bigint`. A signed 64-bit accumulator is safe only for `intsize <= 63`. Five instances have `intsize = 64` and are listed as `normalint`.
+
+278 PARTIAL-LIN instances from `normalized-WBO.tar` live under `wcsp/` and carry no competition year in their path. They are listed in `all/` only.
+
+| Directory | Instances |
+|---|---:|
+| all | 39,510 |
+| pb06 | 2,107 |
+| pb07 | 580 |
+| pb09 | 97 |
+| pb10 | 6,613 |
+| pb11 | 288 |
+| pb12 | 2,783 |
+| extra-pb12 | 2,400 |
+| pb15 | 2,251 |
+| pb16 | 2,236 |
+| pb24 | 16,667 |
+| pb25 | 709 |
+| pb26 | 2,501 |
+
+Counts in `all/` by category and class:
 
 | Category | normalint | bigint |
 |---|---:|---:|
