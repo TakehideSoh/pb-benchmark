@@ -28,29 +28,27 @@ Instances stay in the PB24 format, xz-compressed (a few files are uncompressed `
 
 ## instance-list
 
-`instance-list/` is split by competition year. `all/` is the full deduplicated set. `pb06/` through `pb16/`, `pb24/`, `pb25/`, and `pb26/` are the instances that came from that edition. PB26 is included because `normalized-PB26.tar` is published on the PB26 page. `extra-pb12/` is the separate `normalized-extraPB12.tar` archive, not an edition of its own.
+`all/` is the full deduplicated set of submitted instances. Each `pbNN/` directory is the selected set for that competition, taken from `selected-PBNN.tar`. A selected file is recorded as the matching instance under `benchmarks/`. When the selection repeats an instance, the list keeps that file once. PB15 and the extra PB12 archive have no published selected set, so they have no directory here.
 
 Each directory contains `{directory}-{category}-{class}.csv` files, for example `pb24/pb24-DEC-LIN-bigint.csv`. Columns are `path` and `intsize`. `path` is relative to `benchmarks/`. A file is written only when that combination has at least one instance.
 
 `intsize` is the value in the first comment line: the number of bits needed to represent, for any constraint, the sum of the absolute values of the integers in that constraint (the objective is included). The competition expects solvers to use at least 64-bit integers, so `intsize <= 64` is `normalint` and `intsize > 64` is `bigint`. A signed 64-bit accumulator is safe only for `intsize <= 63`. Five instances have `intsize = 64` and are listed as `normalint`.
 
-278 PARTIAL-LIN instances from `normalized-WBO.tar` live under `wcsp/` and carry no competition year in their path. They are listed in `all/` only.
+A few files in the older selected archives are not in the normalized collection (reduced MIP instances, and some PB09 SAT translations). Those are omitted: 291 from PB06, 431 from PB07, 169 from each of PB09, PB10, and PB11, 615 from PB16, and one each from PB12 and PB24. The PB25 and PB26 selections match completely.
 
-| Directory | Instances |
-|---|---:|
-| all | 39,510 |
-| pb06 | 2,107 |
-| pb07 | 580 |
-| pb09 | 97 |
-| pb10 | 6,613 |
-| pb11 | 288 |
-| pb12 | 2,783 |
-| extra-pb12 | 2,400 |
-| pb15 | 2,251 |
-| pb16 | 2,236 |
-| pb24 | 16,667 |
-| pb25 | 709 |
-| pb26 | 2,501 |
+| Directory | Instances | What it lists |
+|---|---:|---|
+| all | 39,510 | Every submitted instance |
+| pb06 | 1,462 | Selected set |
+| pb07 | 1,810 | Selected set |
+| pb09 | 1,893 | Selected set |
+| pb10 | 3,209 | Selected set |
+| pb11 | 3,295 | Selected set |
+| pb12 | 2,264 | Selected set |
+| pb16 | 5,906 | Selected set |
+| pb24 | 1,206 | Selected set |
+| pb25 | 1,392 | Selected set |
+| pb26 | 1,419 | Selected set |
 
 Counts in `all/` by category and class:
 
